@@ -1,0 +1,2 @@
+class ChannelMembersController < ApplicationController
+end

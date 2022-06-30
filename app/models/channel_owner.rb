@@ -1,0 +1,2 @@
+class ChannelOwner < ApplicationRecord
+end
