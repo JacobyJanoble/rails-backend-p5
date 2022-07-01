@@ -93,7 +93,7 @@ puts "Done Seeding Channel Members..."
 
 puts "Seeding Posts and Replies..."
 
-post1 = Post.create(title: 'How do you center a div?', content: Faker::Lorem.sentence(word_count: 5), user_id: u1.id, postable: r_slash_coding)
+post1 = Post.create(title: 'How do you center a div?', content: Faker::Lorem.sentence(word_count: 5), user_id: u1.id, postable: :r_slash_coding)
 
 
 reply1_2 = Post.create(content: Faker::Lorem.sentence(word_count: 2), user_id: u1.id, postable: post1)
