@@ -93,36 +93,38 @@ puts "Done Seeding Channel Members..."
 
 puts "Seeding Posts and Replies..."
 
-post1 = Post.create(title: 'How do you center a div?', content: Faker::Lorem.sentence(word_count: 5), user_id: u1.id, postable: :r_slash_coding)
+post1 = Post.create(title: 'How do you center a div?', content: Faker::Lorem.sentence(word_count: 5), user_id: u1.id, postable_id:r_slash_coding)
+
+# post1 = Post.create(title: 'How do you center a div?', content: Faker::Lorem.sentence(word_count: 5), user_id: u1.id, postable: :r_slash_coding)
 
 
-reply1_2 = Post.create(content: Faker::Lorem.sentence(word_count: 2), user_id: u1.id, postable: post1)
-reply1_3 = Post.create(content: Faker::Lorem.sentence(word_count: 1), user_id: u3.id, postable: reply1_2)
+reply1_2 = Post.create(content: Faker::Lorem.sentence(word_count: 2), user_id: u1.id, postable_id: post1)
+reply1_3 = Post.create(content: Faker::Lorem.sentence(word_count: 1), user_id: u3.id, postable_id: reply1_2)
 
 
-post2 = Post.create(title: 'What is the coolest coding project you have ever worked on?', content:'lmk', user_id: u5.id, postable:r_slash_coding)
+post2 = Post.create(title: 'What is the coolest coding project you have ever worked on?', content:'lmk', user_id: u5.id, postable_id:r_slash_coding)
 
-reply2 = Post.create(content: Faker::Lorem.sentence(word_count: 13), user_id: u3.id, postable: post2)
-reply2_2 = Post.create(content:Faker::Lorem.sentence(word_count: 7), user_id: u1.id, postable: reply2)
+reply2 = Post.create(content: Faker::Lorem.sentence(word_count: 13), user_id: u3.id, postable_id: post2)
+reply2_2 = Post.create(content:Faker::Lorem.sentence(word_count: 7), user_id: u1.id, postable_id: reply2)
 
 
-post3 = Post.create(title: 'Texas is great', content:Faker::Lorem.sentence(word_count: 4), user_id: u4.id, postable: r_slash_texas)
+post3 = Post.create(title: 'Texas is great', content:Faker::Lorem.sentence(word_count: 4), user_id: u4.id, postable_id:r_slash_texas)
 
-post4 = Post.create(title: 'Tell me something interesting!', content: Faker::Lorem.sentence(word_count: 13), user_id: u1.id, postable: r_slash_interesting)
+post4 = Post.create(title: 'Tell me something interesting!', content: Faker::Lorem.sentence(word_count: 13), user_id: u1.id, postable_id:r_slash_interesting)
 
-post5 = Post.create(title: 'Axos library?', content:Faker::Lorem.sentence(word_count: 17), user_id: u5.id, postable:r_slash_reactjs)
+post5 = Post.create(title: 'Axos library?', content:Faker::Lorem.sentence(word_count: 17), user_id: u5.id, postable_id:r_slash_reactjs)
 
-post6 = Post.create(title: 'What is this?', content:Faker::Lorem.sentence(word_count: 6), user_id: u3.id, postable: r_slash_whatisthisthing)
+post6 = Post.create(title: 'What is this?', content:Faker::Lorem.sentence(word_count: 6), user_id: u3.id, postable_id:r_slash_whatisthisthing)
 
-post7 = Post.create(title: 'What is the most relatable thing about having ADHD?', content:Faker::Lorem.sentence(word_count: 21), user_id: u3.id, postable: r_slash_adhdmeme)
-reply7_1 = Post.create(content: Faker::Lorem.sentence(word_count: 33), user_id: u1.id, postable: post7)
+post7 = Post.create(title: 'What is the most relatable thing about having ADHD?', content:Faker::Lorem.sentence(word_count: 21), user_id: u3.id, postable_id: r_slash_adhdmeme)
+reply7_1 = Post.create(content: Faker::Lorem.sentence(word_count: 33), user_id: u1.id, postable_id: post7)
 
-post8 = Post.create(title: 'Want to hear a ruby joke?', content: Faker::Lorem.sentence(word_count: 3), user_id: u6.id, postable: r_slash_ruby)
+post8 = Post.create(title: 'Want to hear a ruby joke?', content: Faker::Lorem.sentence(word_count: 3), user_id: u6.id, postable_id:r_slash_ruby)
 
 puts "Done Seeding Posts And Replies..."
 
 like1 = Like.create(user_id: u1.id, post_id: post1.id)
-like2 = Like.create(user_id: u1.id, post_id: reply1.id)
+like2 = Like.create(user_id: u1.id, post_id: reply1_2.id)
 like3 = Like.create(user_id: u5.id, post_id: post2.id)
 like4 = Like.create(user_id: u5.id, post_id: reply2.id)
 like5 = Like.create(user_id: u5.id, post_id: reply2_2.id)
