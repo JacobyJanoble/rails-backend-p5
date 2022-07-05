@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
             token = JWT.encode(payload, 'SUPER_SECRET_KEY', 'HS256')
             # byebug
         else
-            render :json => { :msg => "Login failed... Please make sure you have entered the correct username or password"}
+            render json: { msg: "Login failed... Please make sure you have entered the correct username or password" }, status: :unauthorized
         end
     end
+
 end
