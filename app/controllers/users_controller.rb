@@ -40,7 +40,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     private
 
-    def users_params
+    def user_params
         params.require(:user).permit(:email, :username, :password)
     end
 

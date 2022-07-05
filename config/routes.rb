@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :users
 
   post '/login', to: 'sessions#create'
-  post '/unlike_like', to: 'sessions#create'
-  post '/undislike_like' to: 'sessions#create'
+  # post '/unlike_like', to: 'sessions#create'
+  # post '/undislike_like' to: 'sessions#create'
 
 
   get '/hello', to: 'application#hello_world'
