@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'sessions/create'
+  get 'sessions/delete'
+
   resources :dislikes
   resources :likes
   resources :channel_members
@@ -7,10 +10,10 @@ Rails.application.routes.draw do
   resources :post
   resources :users
 
-  get "/me" to: "users#show"
+  post '/login', to: 'sessions#create'
+  post '/unlike_like', to: 'sessions#create'
+  post '/undislike_like' to: 'sessions#create'
 
-  get 'sessions/create'
-  get 'sessions/delete'
 
   get '/hello', to: 'application#hello_world'
 end
