@@ -2,12 +2,10 @@ class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
-    def create
-        @user = User.create(users_params)
-        payload = { user_id: @user.id }
-        token = JWT.encode(payload,ENV['SUPER_SECRET_KEY'], 'HS256')
-        #render:json =>
-        render json: { :auth_key => token }, status: ok
+
+    def index
+       users = User.all
+       render json: users, except: [:created_at, :updated_at], include: [:likes, :dislikes, :channel_members, :channel_owners]
     end
 
     def show

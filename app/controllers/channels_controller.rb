@@ -22,7 +22,7 @@ class ChannelsController < ApplicationController
                 if channel_member.save
                     render json: channel, include: [:channel_owners, :channel_members]
                 else
-                    #render :json => {:msg ""}
+                    #render :json => {:msg => "Channel Member failed to create"}, status: :bad_request
                     render json: { msg: "Channel Member failed to create" }, status: :bad_request
                 end
             else

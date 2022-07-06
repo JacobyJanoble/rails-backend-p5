@@ -7,10 +7,16 @@ Rails.application.routes.draw do
   resources :channel_members
   resources :channel_owners
   resources :channels
-  resources :post
+  resources :posts
   resources :users
 
+
   post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+  get '/users', to: "users#show"
+
+  get '/posts', to: 'posts#show'
 
 
   get '/hello', to: 'application#hello_world'
