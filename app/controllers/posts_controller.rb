@@ -21,7 +21,7 @@ class PostsController < ApplicationController
         if post.save
             render json: post, include: [:user, :postable, :likes, :dislikes, :posts]
         else
-            render json: { message: 'Item not found' }
+            render json: { message: 'Post not found' }
         end
     end
 
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
     def destroy
         Post.destroy(params[:id])
-        render json: { message: 'Item deleted'}
+        render json: { message: 'Post deleted'}
     end
 
     private

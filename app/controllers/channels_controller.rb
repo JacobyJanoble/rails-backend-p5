@@ -16,23 +16,23 @@ class ChannelsController < ApplicationController
     def create
         channel = Channel.new(channel_params)
         if channel.save
-            channel_owner = ChannelOwner.new(user_id: current_user.id, channel_id: channel.id)
-            channel_member = ChannelMember.new(user_id: current_user.id)
-            if channel_owner.save
-                if channel_member.save
-                    render json: channel, include: [:channel_owners, :channel_members]
-                else
-                    #render :json => {:msg => "Channel Member failed to create"}, status: :bad_request
-                    render json: { msg: "Channel Member failed to create" }, status: :bad_request
-                end
-            else
-                render json: { msg: "Channel Owner failed to create" }, status: :bad_request
-                render json: channel, include: [:channel_owners, :channel_members]
-            end
+            build owner_member(build_owner_member)
+           # if channel_owner.save
+            #     if channel_member.save
+            #         render json: channel, include: [:channel_owners, :channel_members]
+            #     else
+            #         #render :json => {:msg => "Channel Member failed to create"}, status: :bad_request
+            #         render json: { msg: "Channel Member failed to create" }, status: :bad_request
+            #     end
+            # else
+            #     render json: { msg: "Channel Owner failed to create" }, status: :bad_request
+            #     render json: channel, include: [:channel_owners, :channel_members]
+            # end
         else
             render json: { msg: "Channel failed to be created" }, status: :bad_request
         end
     end
+
 
     def update
         channel = Channel.find(params[:id])
@@ -47,6 +47,11 @@ class ChannelsController < ApplicationController
     end
 
     private
+
+    def build_owner_member (channel_obj)
+        channel_obj.owners.create(user_id: current_user.id)
+        channel_obj.members.create(user_id: current_user.id)
+    end
 
     def channel_params
         params.require(:channel).permit(:title)

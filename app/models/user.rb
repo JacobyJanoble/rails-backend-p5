@@ -10,4 +10,13 @@ class User < ApplicationRecord
     has_many :member_channels, through: :channel_members, source: :channel
 
     validates :username, uniqueness: { case_sensitive: false }
+
+    def like_count
+        self.likes.count
+    end
+
+    def dislike_count
+
+    end
+
 end
