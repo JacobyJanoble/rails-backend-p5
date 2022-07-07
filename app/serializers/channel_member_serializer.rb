@@ -1,3 +1,3 @@
 class ChannelMemberSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :channel_id
 end
