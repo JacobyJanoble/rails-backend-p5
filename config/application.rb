@@ -33,5 +33,7 @@ module RailsBackendP5
 
     # Use SameSite=Strict for all cookies to help protect against CSRF
     config.action_dispatch.cookies_same_site_protection = :strict
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <%= form_with '/contact' do |f| %>
+    <h2> Need assitance? Contact us! </h2>
+
+    <p>
+        <%= f.text_area :message %>
+    </p>
+
+    <p>
+    <%= f.submit %>
+    </p>
+
+    <% end %>
+
+  </body>
+</html>
