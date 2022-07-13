@@ -4,5 +4,6 @@ class ContactController < ApplicationController
     end
 
     def create
+        ContactJob.perform_later params.permit(:message)[:message]
     end
 end
