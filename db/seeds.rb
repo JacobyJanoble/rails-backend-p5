@@ -17,30 +17,14 @@ puts "Done Seeding Users!"
 puts "Seeding Channels..."
 channel = Channel.create(
     [
-        {
-            title:"Damnthatsinteresting", description: "The most interesting place on reddit"
-        },
-        {
-            title:"clevercomebacks", description: "A place for great retorts. If someone just got shown up, this is the place to post it."
-        },
-        {
-            title: "coding", description: "Welcome to coding"
-        },
-        {
-            title:"Texas", description: "News, events, and general noise related to the great state of Texas!"
-        },
-        {
-            title:"Adhdmemes", description: "ADHD memes, rage comics, and other nonsense"
-        },
-        {
-            title:"Whatisthisthing", description: "If you have an object and you don't know what it is, this is the place for you to search for an answer. We may not know the why but we can help with the what."
-        },
-        {
-            title:"Reactjs", description: "A community for learning and developing web applications using React by Facebook."
-        },
-        {
-            title:"Ruby", description: "Celebrate the weird and wonderful Ruby programming language with us!"
-        },
+        {title:"Damnthatsinteresting", description: "The most interesting place on reddit"},
+        {title:"clevercomebacks", description: "A place for great retorts. If someone just got shown up, this is the place to post it."},
+        {title: "coding", description: "Welcome to coding"},
+        {title:"Texas", description: "News, events, and general noise related to the great state of Texas!"},
+        {title:"Adhdmemes", description: "ADHD memes, rage comics, and other nonsense"},
+        {title:"Whatisthisthing", description: "If you have an object and you don't know what it is, this is the place for you to search for an answer. We may not know the why but we can help with the what."},
+        {title:"Reactjs", description: "A community for learning and developing web applications using React by Facebook."},
+        {title:"Ruby", description: "Celebrate the weird and wonderful Ruby programming language with us!"},
     ]
 )
 puts "Done Seeding Channels!"
@@ -56,28 +40,30 @@ puts "Done Seeding Channel Owners!"
 
 
 puts "Seeding Channel Members..."
-ChannelMember.create(
+cm = ChannelMember.create(
     [
-        {user_id: user.id, channel_id: channel.id}
+        {user_id: user.id channel_id: channel.id}
     ]
 )
 puts "Done Seeding Channel Members..."
 
 
 puts "Seeding Posts and Replies..."
+
+# Needs refactor to randomize (?)
     20.times do
         post = Post.create(
             title: Faker::Lorem.sentence(word_count: 7),
             content: Faker::Lorem.sentence(word_count: 15, supplemental: true, random_words_to_add: 10),
             user_id: user.id,
-            postable_id: channel.all.sample
+            postable_id: channel.id
         )
 
         rand(1..7).times do
             Post.create(
                 content: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 20),
                 user_id: user.id,
-                postable_id: post.all.sample
+                postable_id: post.id
             )
         end
     end

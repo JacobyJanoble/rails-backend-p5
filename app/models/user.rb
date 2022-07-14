@@ -16,7 +16,7 @@ class User < ApplicationRecord
     end
 
     def dislike_count
-
+        self.dislikes.count
     end
 
 end
