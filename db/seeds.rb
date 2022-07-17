@@ -33,7 +33,12 @@ puts "Done Seeding Channels!"
 puts "Seeding Channel Owners..."
 co = ChannelOwner.create(
     [
-        {user_id: user.id, channel_id: channel.id}
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id}
     ]
 )
 puts "Done Seeding Channel Owners!"
@@ -42,7 +47,12 @@ puts "Done Seeding Channel Owners!"
 puts "Seeding Channel Members..."
 cm = ChannelMember.create(
     [
-        {user_id: user.id channel_id: channel.id}
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
+        {user_id: User.all.sample.id, channel_id: Channel.all.sample.id}
     ]
 )
 puts "Done Seeding Channel Members..."
@@ -50,32 +60,31 @@ puts "Done Seeding Channel Members..."
 
 puts "Seeding Posts and Replies..."
 
-# Needs refactor to randomize (?)
+# Needs refactor to randomize
     20.times do
         post = Post.create(
             title: Faker::Lorem.sentence(word_count: 7),
             content: Faker::Lorem.sentence(word_count: 15, supplemental: true, random_words_to_add: 10),
-            user_id: user.id,
-            postable_id: channel.id
+            user_id: User.all.sample.id,
+            postable: Channel.all.sample
         )
 
         rand(1..7).times do
             Post.create(
                 content: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 20),
-                user_id: user.id,
-                postable_id: post.id
+                user_id: User.all.sample.id,
+                postable: Post.all.sample
+            )
+        end
+        rand(1..100).times do
+            Like.create(
+                user_id: User.all.sample.id,
+                post_id: Post.all.sample.id
             )
         end
     end
     puts "Done Seeding Posts And Replies..."
 
-
-    rand(1..100).times do
-        Like.create(
-            user_id: User.all.sample
-            post_id Post.all.sample
-        )
-    end
 
 
 

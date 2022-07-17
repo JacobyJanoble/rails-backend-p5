@@ -8,7 +8,7 @@ class LikesController < ApplicationController
     def show
         like = Like.find_by(id: params[:id])
         if like
-            render json: { message: 'Item not found' }
+            render json: like.slice(:id, :post, :user)
         else
             render json: { message: 'Item not found' }
         end
@@ -51,7 +51,7 @@ class LikesController < ApplicationController
     private
 
     def like_params
-        params.require(:like).permit(:post_id, :user_id, :like_id, :dislike_id)
+        params.require(:like).permit(:post_id, :user_id)
     end
 
 end

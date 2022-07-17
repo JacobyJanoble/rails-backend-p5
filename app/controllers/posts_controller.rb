@@ -27,13 +27,13 @@ class PostsController < ApplicationController
 
     def update
         authenticate!
-        post = Post.new(post_params)
-        post.user_id = current_user.id
-        if post.save
+        post = Post.find(params[:id])
+        if post.user_id == current_user.id
+            post.update_attributes(post_params)
+            post.save
             render json: post, include: [:user, :postable, :likes, :dislikes, :posts]
         else
-            #render:json =>
-            render json: { msg: "Failed to create post" }, status: :bad_request
+            render json: { message: 'The credentials you have presented are not authorized to edit this post, please be sure to be logged in appropriately.' }
         end
     end
 
