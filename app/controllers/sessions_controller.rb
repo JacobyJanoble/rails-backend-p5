@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
     def create
         @user = User.find_by(username: params[:username])
-        if @user && @user.authenticate(params[:password])
+        if @user && @user.authenticate(params[:password_digest])
             payload = { user_id: @user.id }
             #JWT.encode takes 3 args, 1. the data u want to encode, 2: key u want to use. 3. algorithm you want to use
             token = JWT.encode(payload, 'SUPER_SECRET_KEY', 'HS256')

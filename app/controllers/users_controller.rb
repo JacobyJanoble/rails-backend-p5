@@ -5,21 +5,21 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def index
        users = User.all
-       render json: users, except: [:created_at, :updated_at], include: [:likes, :dislikes, :channel_members, :channel_owners]
+       render json: users
     end
 
     def show
         user = User.find_by(id: params[:id])
         if user
-            render json: user, except: [:created_at, :updated_at], include: [:likes, :dislikes, :channel_members, :channel_owners]
+            render json: user
         else
             render json: { message: 'Item not found' }
         end
     end
 
     def create
-        @user = User.create(user_params)
-        payload = { user_id: @user.id }
+        user = User.create(user_params)
+        payload = { user_id: user.id }
         token = JWT.encode(payload, 'SUPER_SECRET_KEY', HS256)
         render json: { auth_key: token }, status: :ok
     end
@@ -39,7 +39,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     private
 
     def user_params
-        params.require(:user).permit(:email, :username, :password)
+        params.permit(:email, :username, :password)
     end
 
 end

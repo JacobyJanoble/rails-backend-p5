@@ -18,8 +18,12 @@ Rails.application.routes.draw do
 
   get '/posts', to: 'posts#show'
 
+
   get '/contact', to: 'contact#new'
   get '/contact', to: 'contact#create'
+
+  post '/unlike_dislike', to: 'dislikes#unlike_dislike'
+  post '/undislike_like', to: 'likes#undislike_like'
 
 
   get '/hello', to: 'application#hello_world'

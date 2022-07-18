@@ -15,15 +15,9 @@ class LikesController < ApplicationController
     end
 
     def create
-        authenticate!
-        like = Like.new(like_params)
-        like.user_id = current_user.id
-        if like.save
-            render json: like, include: [:user, :post]
-        else
-            #render:json =>
-            render json: { msg: => "Failed to create like" }, status: :bad_request
-        end
+        like = Like.create(like_params)
+        render json: like
+
     end
 
     def undislike_like
@@ -51,7 +45,7 @@ class LikesController < ApplicationController
     private
 
     def like_params
-        params.require(:like).permit(:post_id, :user_id)
+        params.permit(:post_id, :user_id)
     end
 
 end

@@ -1,39 +1,28 @@
 class DislikesController < ApplicationController
     def index
         dislikes = Dislike.all
-        render json: dislikes, except: [:created_at, :updated_at], include: [:user, :post]
+        render json: dislikes
     end
 
     def show
         dislike = Dislike.find_by(id: params[:id])
         if dislike
-            render json: dislike, except [:created_at, :updated_at], include: [:user, :post]
+            render json: dislike
         else
             render json: { message: 'Item not found' }
         end
     end
 
     def create
-        authenticate!
-        dislike = Dislike.new(dislike_params)
-        dislike.user_id = current_user.id
-        if dislike.save
-            render json: dislike, include: [:user, :post]
-        else
-            #render :json => ?
-            render json: { msg: "Failed to create dislike"}, status : :bad_request
-        end
+
+        dislike = Dislike.create(dislike_params)
+        render json: dislike
     end
 
-    def undo_dislike
+    def unlike_dislike
         Like.destroy(params[:like_id])
-        dislike = Dislike.new(dislike_params)
-        if dislike.save
-            render json: dislike, include: [:user, :post]
-        else
-            # render:json =>
-            render json: { msg: "Failed to create dislike"}, status: :bad_request
-        end
+        dislike = Dislike.create(dislike_params)
+        render json: dislike
     end
 
     def destroy
@@ -49,7 +38,7 @@ class DislikesController < ApplicationController
         private
 
         def dislike_params
-            params.require(:dislike).permit(:post_id, :user_id)
+            params.permit(:post_id, :user_id)
         end
     end
 
