@@ -4,7 +4,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid
 
     def index
         channel_members = ChannelMember.all
-        render json: channel_members, except: [:created_at, :updated_at], include: [:user, :channel]
+        render json: channel_members
     end
 
     def show
@@ -17,9 +17,8 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid
     end
 
     def create
-        channel_member = ChannelMember.new(channel_member_params)
-        channel_member.save
-        render json: channel_member
+        ChannelMember.create(channel_member_params)
+        render json: channel_members
     end
 
     def update
@@ -36,7 +35,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid
     private
 
     def channel_member_params
-        params.require(:channel_member).permit(:channel_id, :user_id)
+        params.permit(:channel_id, :user_id)
     end
 
     def invalid error

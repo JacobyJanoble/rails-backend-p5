@@ -2,7 +2,7 @@ class LikesController < ApplicationController
 
     def index
         likes = Like.all
-        render json: likes, except: [:created_at, :updated_at], include: [:user, :post]
+        render json: likes
     end
 
     def show
@@ -24,7 +24,7 @@ class LikesController < ApplicationController
         Dislike.destroy(params[:dislike_id])
         like = Like.new(like_params)
         if like.save
-            render json: like, include: [:user, :post]
+            render json: like
         else
             #render:json =>
             render json: { msg: "failed to create like" }, status: :bad_request

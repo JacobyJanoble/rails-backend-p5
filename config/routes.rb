@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'contact#new'
   get '/contact', to: 'contact#create'
 
+  post '/unlike_like', to: 'dislikes#unlike_like'
   post '/unlike_dislike', to: 'dislikes#unlike_dislike'
   post '/undislike_like', to: 'likes#undislike_like'
 
