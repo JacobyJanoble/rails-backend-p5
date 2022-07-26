@@ -3,12 +3,12 @@ require 'faker'
 puts "Seeding Users..."
 user = User.create(
     [
-        {username: 'jacoby', password_digest: '1234', email: "Jacob.McCann214@gmail.com"},
-        {username: 'abc123', password_digest: '1234', email: "creation01@gmail.com"},
-        {username: 'droid33', password_digest: '1234', email: "creation02@gmail.com"},
-        {username: 'dexter1', password_digest: '1234', email: "creation03@gmail.com"},
-        {username: 'jahmean99', password_digest: '1234', email: "creation04@gmail.com"},
-        {username: 'lab2', password_digest: '1234', email: "creation05@gmail.com"},
+        {username: 'jacoby', password: '1234', email: "Jacob.McCann214@gmail.com"},
+        {username: 'abc123', password: '1234', email: "creation01@gmail.com"},
+        {username: 'droid33', password: '1234', email: "creation02@gmail.com"},
+        {username: 'dexter1', password: '1234', email: "creation03@gmail.com"},
+        {username: 'jahmean99', password: '1234', email: "creation04@gmail.com"},
+        {username: 'lab2', password: '1234', email: "creation05@gmail.com"},
     ],
 )
 puts "Done Seeding Users!"
