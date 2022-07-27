@@ -23,7 +23,6 @@ module RailsBackendP5
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.api_only = true
-    config.autoload_paths << “#{Rails.root}/lib”
 
 
     # Adding back cookies and session middleware

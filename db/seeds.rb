@@ -45,7 +45,8 @@ puts "Done Seeding Channel Owners!"
 
 
 puts "Seeding Channel Members..."
-cm = ChannelMember.create(
+
+ChannelMember.create(
     [
         {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
         {user_id: User.all.sample.id, channel_id: Channel.all.sample.id},
